@@ -34,7 +34,7 @@ def main(page: Page):
 
   app1 = ToDoApp(texttitle='What needs to be done')
   
-  app2 = ToDoApp(texttitle='Tasks need to be dinished')
+  app2 = ToDoApp(texttitle='Tasks need to be finished')
   
   page.add(app1, app2)
 flet.app(target=main)

@@ -1,4 +1,3 @@
-from select import select
 import flet
 from flet import TextField, FloatingActionButton, Column, Row, UserControl, Checkbox, IconButton, icons, Page, colors
 
@@ -7,6 +6,7 @@ class Task(UserControl):
     self.task_name = task_name
     self.task_delete = task_delete
     super().__init__()
+    
 
   def build(self):
     self.display_task = Checkbox(value=False, label=self.task_name)
@@ -35,7 +35,8 @@ class Task(UserControl):
         ),
         
       ],
-    ),
+    )
+
     self.edit_view = Row(
       visible=False,
       alignment='spaceBetween',
@@ -51,7 +52,7 @@ class Task(UserControl):
       ],
     )
     return Column(
-      controls=[self.display_view, self.edit_view],
+      controls=[self.display_view, self.edit_view]
     )
 
   def edit_clicked(self, e):
@@ -66,8 +67,8 @@ class Task(UserControl):
     self.edit_view.visible = False
     self.update()
 
-  def delete_clicked(self):
-    self.task_delete
+  def delete_clicked(self, e):
+    self.task_delete(self)
 
 class ToDoApp(UserControl):
   def build(self):
@@ -97,7 +98,10 @@ class ToDoApp(UserControl):
     self.update()
 
 def main(page: Page):
+  page.title = 'ToDo App'
+  page.horizontal_alignment = 'center'
+  
   app1 = ToDoApp()
   page.add(app1)
-  
+  page.update()
 flet.app(target=main)
